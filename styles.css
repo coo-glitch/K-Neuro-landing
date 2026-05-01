@@ -175,10 +175,39 @@ section {
   border-color: var(--color-white);
 }
 .hero-visual {
-  height: 400px;
-  background-color: rgba(255,255,255,0.1);
-  color: rgba(255,255,255,0.7);
-  border: 1px dashed rgba(255,255,255,0.3);
+  position: relative;
+  width: 100vw;
+  max-width: 100%;
+  overflow: hidden;
+  margin-top: 40px;
+  margin-left: calc(-50vw + 50%);
+  height: 250px;
+}
+
+.flashmob-track {
+  display: flex;
+  width: max-content;
+  animation: scroll-left 30s linear infinite;
+  gap: 16px;
+  padding: 0 8px;
+}
+
+.flashmob-track:hover {
+  animation-play-state: paused;
+}
+
+.flashmob-track img {
+  height: 250px;
+  width: auto;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  border: 2px solid rgba(255,255,255,0.1);
+}
+
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-50% - 8px)); }
 }
 
 /* 2. Problem */
