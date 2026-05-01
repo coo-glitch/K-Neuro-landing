@@ -147,29 +147,65 @@ section {
 
 /* 1. Hero */
 .hero {
-  background: 
-    /* 하단 중앙에서 뻗어나가는 날카로운 광선들 (Light Rays) */
-    conic-gradient(from 270deg at 50% 100%, 
-      transparent 0deg, 
-      rgba(150, 200, 255, 0.03) 25deg, 
-      transparent 45deg, 
-      rgba(150, 200, 255, 0.08) 65deg, 
-      transparent 85deg, 
-      rgba(255, 255, 255, 0.25) 90deg, 
-      transparent 95deg, 
-      rgba(150, 200, 255, 0.08) 115deg, 
-      transparent 135deg, 
-      rgba(150, 200, 255, 0.03) 155deg, 
-      transparent 180deg),
-    /* 하단 중앙의 은은한 푸른빛 번짐 (Glow) */
-    radial-gradient(ellipse 90% 70% at 50% 100%, rgba(40, 100, 255, 0.3) 0%, transparent 60%),
-    /* 우주 공간처럼 깊이 있는 다크 베이스 */
-    linear-gradient(180deg, #020611 0%, #0A1630 60%, #16294F 100%);
+  background-color: #02050A;
+  background-image: 
+    /* 공중에 떠 있는 빛의 파동 (아나모픽 렌즈 플레어) */
+    radial-gradient(ellipse 100% 2px at 50% 25%, rgba(150, 220, 255, 0.4) 0%, transparent 60%),
+    radial-gradient(ellipse 120% 1px at 50% 65%, rgba(0, 194, 168, 0.3) 0%, transparent 50%),
+    /* 우주 성운 같은 은은한 백그라운드 아우라 */
+    radial-gradient(circle at 10% 80%, rgba(13, 50, 120, 0.4) 0%, transparent 50%),
+    radial-gradient(circle at 90% 20%, rgba(0, 194, 168, 0.15) 0%, transparent 50%);
   color: var(--color-white);
-  padding: 140px 0 100px;
+  padding: 160px 0 100px;
   text-align: center;
   position: relative;
   overflow: hidden;
+  z-index: 1;
+}
+
+/* 역동적으로 회전하는 서치라이트/광선 효과 (애니메이션) */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: 
+    conic-gradient(from 0deg at 50% 50%, 
+      transparent 0deg, 
+      rgba(80, 150, 255, 0.05) 45deg, 
+      transparent 90deg, 
+      rgba(0, 194, 168, 0.1) 135deg, 
+      transparent 180deg, 
+      rgba(150, 220, 255, 0.15) 225deg, 
+      transparent 270deg, 
+      rgba(30, 80, 200, 0.08) 315deg, 
+      transparent 360deg);
+  z-index: -2;
+  animation: rotate-beams 25s linear infinite;
+  mix-blend-mode: screen;
+}
+
+/* 하단 코어의 강렬한 발광 및 깊이감 */
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    /* 바닥에서 뿜어져 나오는 렌즈 플레어 중심 빛 */
+    radial-gradient(ellipse 200% 3px at 50% 100%, rgba(200, 240, 255, 0.8) 0%, transparent 40%),
+    radial-gradient(ellipse 120% 60% at 50% 100%, rgba(13, 82, 204, 0.4) 0%, transparent 60%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+@keyframes rotate-beams {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 .hero-title {
   font-size: 2.5rem;
