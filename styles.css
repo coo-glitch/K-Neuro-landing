@@ -147,69 +147,71 @@ section {
 
 /* 1. Hero */
 .hero {
-  background-color: #010205;
+  background-color: #050A14;
+  background-image: 
+    /* 중앙 소실점 발광 */
+    radial-gradient(ellipse 30% 15% at 50% 55%, rgba(100, 150, 255, 0.4) 0%, transparent 100%),
+    radial-gradient(circle at 50% 55%, rgba(200, 230, 255, 0.8) 0%, transparent 10%);
   color: var(--color-white);
-  padding: 180px 0 140px;
+  padding: 160px 0 120px;
   text-align: center;
   position: relative;
   overflow: hidden;
   z-index: 1;
 }
 
-/* 윗부분 거대 행성 곡선 (Top Arc) */
+/* 바닥 3D 투시도 (Perspective Floor) */
 .hero::before {
   content: '';
   position: absolute;
-  top: 250px; 
-  left: 50%;
-  width: 200vw;
-  height: 100vh;
-  transform: translate(-50%, calc(-100% - 2px));
-  border-radius: 50%;
-  border-bottom: 2px solid rgba(200, 220, 255, 0.6);
-  box-shadow: 0px 40px 120px rgba(50, 80, 220, 0.5);
-  background: radial-gradient(ellipse at 50% 100%, rgba(20, 40, 100, 0.4) 0%, transparent 60%);
+  top: 55%;
+  left: -50%;
+  width: 200%;
+  height: 50%;
+  background-image: 
+    /* 정중앙 복도 마스크 */
+    linear-gradient(to right, transparent 46%, #050A14 48%, #050A14 52%, transparent 54%),
+    /* 수평선 (계단 느낌) */
+    linear-gradient(to bottom, rgba(150, 200, 255, 0.8) 1px, transparent 3px);
+  background-size: 100% 100%, 100% 40px;
+  transform: perspective(250px) rotateX(70deg);
+  transform-origin: top center;
   z-index: -2;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 100%);
 }
 
-/* 아랫부분 거대 행성 곡선 (Bottom Arc) */
+/* 빛줄기 (Volumetric Light Beams) */
 .hero::after {
   content: '';
   position: absolute;
-  top: 250px;
-  left: 50%;
-  width: 200vw;
-  height: 100vh;
-  transform: translate(-50%, 2px);
-  border-radius: 50%;
-  border-top: 2px solid rgba(200, 220, 255, 0.6);
-  box-shadow: 0px -40px 120px rgba(50, 80, 220, 0.5);
-  background: radial-gradient(ellipse at 50% 0%, rgba(20, 40, 100, 0.4) 0%, transparent 60%);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: conic-gradient(from 0deg at 50% 55%, 
+    transparent 0deg,
+    /* Right Beams */
+    transparent 55deg,
+    rgba(150, 200, 255, 0.15) 60deg,
+    rgba(255, 255, 255, 0.6) 65deg,
+    rgba(150, 200, 255, 0.15) 70deg,
+    transparent 75deg,
+
+    /* Left Beams */
+    transparent 285deg,
+    rgba(150, 200, 255, 0.15) 290deg,
+    rgba(255, 255, 255, 0.6) 295deg,
+    rgba(150, 200, 255, 0.15) 300deg,
+    transparent 305deg,
+    
+    transparent 360deg
+  );
   z-index: -2;
 }
 
 .hero-content {
   position: relative;
   z-index: 10;
-}
-
-.hero-content::before {
-  content: '';
-  position: absolute;
-  top: 70px; /* hero padding-top 180px + 70px = 250px */
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 150vw;
-  height: 400px;
-  background-image: 
-    /* 텍스트 가독성을 위한 투명 블랙 필름 */
-    radial-gradient(ellipse 60% 40% at 50% 50%, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.4) 40%, transparent 80%),
-    /* 엄청나게 밝은 수평 렌즈 플레어 */
-    radial-gradient(ellipse 150% 2px at 50% 50%, rgba(255, 255, 255, 1) 0%, transparent 30%),
-    radial-gradient(ellipse 80% 6px at 50% 50%, rgba(180, 200, 255, 0.9) 0%, transparent 50%),
-    radial-gradient(ellipse 60% 40% at 50% 50%, rgba(60, 90, 220, 0.5) 0%, transparent 70%);
-  z-index: -1;
-  pointer-events: none;
 }
 
 .hero-title {
@@ -219,7 +221,7 @@ section {
   margin-bottom: 24px;
   letter-spacing: -0.02em;
   color: #ffffff;
-  text-shadow: 0 0 40px rgba(100, 150, 255, 0.9), 0 0 10px rgba(255, 255, 255, 0.6);
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(150, 200, 255, 0.4);
 }
 .hero-subtitle {
   font-size: 1.3rem;
