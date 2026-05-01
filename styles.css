@@ -3,7 +3,7 @@
    ========================================================================== */
 :root {
   /* 브랜드 컬러 */
-  --color-main: #16294F;
+  --color-main: #1E3A6E;
   --color-sub: #1E4DB7;
   --color-point: #00C2A8;
   
@@ -477,7 +477,7 @@ section {
   top: 0;
   left: 0;
   width: 100%;
-  background: #16294F;
+  background: #1E3A6E;
   z-index: 100;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
