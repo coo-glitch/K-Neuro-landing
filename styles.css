@@ -147,11 +147,7 @@ section {
 
 /* 1. Hero */
 .hero {
-  background-color: #050A14;
-  background-image: 
-    /* 중앙 소실점 발광 */
-    radial-gradient(ellipse 30% 15% at 50% 55%, rgba(100, 150, 255, 0.4) 0%, transparent 100%),
-    radial-gradient(circle at 50% 55%, rgba(200, 230, 255, 0.8) 0%, transparent 10%);
+  background-color: #020408;
   color: var(--color-white);
   padding: 160px 0 120px;
   text-align: center;
@@ -160,58 +156,59 @@ section {
   z-index: 1;
 }
 
-/* 바닥 3D 투시도 (Perspective Floor) */
-.hero::before {
-  content: '';
-  position: absolute;
-  top: 55%;
-  left: -50%;
-  width: 200%;
-  height: 50%;
-  background-image: 
-    /* 정중앙 복도 마스크 */
-    linear-gradient(to right, transparent 46%, #050A14 48%, #050A14 52%, transparent 54%),
-    /* 수평선 (계단 느낌) */
-    linear-gradient(to bottom, rgba(150, 200, 255, 0.8) 1px, transparent 3px);
-  background-size: 100% 100%, 100% 40px;
-  transform: perspective(250px) rotateX(70deg);
-  transform-origin: top center;
-  z-index: -2;
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 100%);
-}
-
-/* 빛줄기 (Volumetric Light Beams) */
-.hero::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: conic-gradient(from 0deg at 50% 55%, 
-    transparent 0deg,
-    /* Right Beams */
-    transparent 55deg,
-    rgba(150, 200, 255, 0.15) 60deg,
-    rgba(255, 255, 255, 0.6) 65deg,
-    rgba(150, 200, 255, 0.15) 70deg,
-    transparent 75deg,
-
-    /* Left Beams */
-    transparent 285deg,
-    rgba(150, 200, 255, 0.15) 290deg,
-    rgba(255, 255, 255, 0.6) 295deg,
-    rgba(150, 200, 255, 0.15) 300deg,
-    transparent 305deg,
-    
-    transparent 360deg
-  );
-  z-index: -2;
-}
+/* 삭제된 구 바닥/빛줄기 코드 대신, 더이상 사용 안 함. .hero-content 의 가상 요소로 그릴 것임 */
 
 .hero-content {
   position: relative;
   z-index: 10;
+}
+
+/* 거대 행성 (Planet Arc) - 텍스트 정중앙을 기준으로 위치 */
+.hero-content::before {
+  content: '';
+  position: absolute;
+  top: 50%; /* 텍스트 영역의 세로 중앙 */
+  left: 50%;
+  transform: translate(-50%, 0); /* 윗선이 중앙에 오도록 아래로 그림 */
+  width: 200vw;
+  height: 100vh; /* 아주 완만한 곡선 */
+  border-radius: 50%;
+  border-top: 2px solid rgba(200, 220, 255, 0.8);
+  box-shadow: 
+    0px -30px 100px rgba(50, 100, 255, 0.4), /* 바깥쪽 빛 번짐 */
+    inset 0px 50px 150px rgba(10, 30, 80, 0.8); /* 안쪽 어두운 행성 표면 글로우 */
+  background-color: #010205; /* 행성 내부는 더 어둡게 */
+  z-index: -2;
+  pointer-events: none;
+}
+
+/* 십자 빛기둥 & 렌즈 플레어 & 보케 효과 */
+.hero-content::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100vw;
+  height: 200vh; /* 수직 빛기둥을 위해 충분한 높이 */
+  background-image: 
+    /* 1. 텍스트 가독성용 블랙 투명 마스크 */
+    radial-gradient(ellipse 60% 150px at 50% 50%, rgba(0, 0, 0, 0.6) 0%, transparent 100%),
+    /* 2. 수직 빛기둥 (Vertical Light Pillar) */
+    linear-gradient(to right, transparent calc(50% - 1px), rgba(255, 255, 255, 0.9) 50%, transparent calc(50% + 1px)),
+    linear-gradient(to right, transparent calc(50% - 10px), rgba(150, 200, 255, 0.2) 50%, transparent calc(50% + 10px)),
+    /* 3. 수평 렌즈 플레어 (Horizontal Flare) */
+    radial-gradient(ellipse 150% 2px at 50% 50%, rgba(255, 255, 255, 1) 0%, transparent 30%),
+    radial-gradient(ellipse 80% 8px at 50% 50%, rgba(150, 200, 255, 0.8) 0%, transparent 50%),
+    /* 4. 중앙 교차점 발광 (Sunrise Glow) */
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 1) 0%, transparent 3%),
+    radial-gradient(ellipse 40% 200px at 50% 50%, rgba(60, 120, 255, 0.4) 0%, transparent 60%),
+    /* 5. 보케 렌즈 아티팩트 (Bokeh) */
+    radial-gradient(circle at 58% 40%, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.05) 4%, transparent 4.5%),
+    radial-gradient(circle at 56% 45%, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.02) 2%, transparent 2.5%),
+    radial-gradient(circle at 45% 55%, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.03) 5%, transparent 5.5%);
+  z-index: -1;
+  pointer-events: none;
 }
 
 .hero-title {
@@ -221,7 +218,7 @@ section {
   margin-bottom: 24px;
   letter-spacing: -0.02em;
   color: #ffffff;
-  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(150, 200, 255, 0.4);
+  text-shadow: 0 0 40px rgba(100, 150, 255, 0.9), 0 0 10px rgba(255, 255, 255, 0.6);
 }
 .hero-subtitle {
   font-size: 1.3rem;
