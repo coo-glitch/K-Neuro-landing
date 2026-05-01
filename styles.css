@@ -475,9 +475,14 @@ section {
   top: 0;
   left: 0;
   width: 100%;
-  background: #1E3A6E;
+  background: 
+    linear-gradient(115deg, rgba(30, 58, 110, 0.85) 0%, rgba(10, 19, 40, 0.95) 50%, rgba(30, 58, 110, 0.85) 100%),
+    radial-gradient(120% 100% at 50% 0%, rgba(0, 194, 168, 0.2) 0%, transparent 60%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   z-index: 100;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), inset 0 -1px 0 rgba(0, 194, 168, 0.15);
 }
 .header-container {
   display: flex;
