@@ -23,21 +23,19 @@ export default async function handler(req, res) {
       body: JSON.stringify({
         parent: { database_id: NOTION_DATABASE_SOURCE_ID },
         properties: {
-          // 이름은 노션 DB의 기본 컬럼(Title)이어야 합니다.
-          "이름": { 
+          "고객명": { 
             title: [{ text: { content: name || '' } }] 
           },
-          // 나머지는 모두 텍스트(Rich Text) 컬럼으로 생성해 주시면 안전합니다.
-          "연락처": { 
-            rich_text: [{ text: { content: phone || '' } }] 
+          "전화번호": { 
+            phone_number: phone || ''
           },
-          "소속 센터": { 
-            rich_text: [{ text: { content: center || '' } }] 
+          "메모": { 
+            rich_text: [{ text: { content: center ? `[소속 센터] ${center}` : '' } }] 
           },
-          "관심 프로그램": { 
-            rich_text: [{ text: { content: program || '' } }] 
+          "프로그램": { 
+            select: { name: program || '기타 상담' } 
           },
-          "문의 내용": { 
+          "문의내용": { 
             rich_text: [{ text: { content: message || '' } }] 
           }
         }
