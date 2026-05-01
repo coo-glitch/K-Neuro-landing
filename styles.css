@@ -182,14 +182,16 @@ section {
   margin-top: 60px;
   margin-left: calc(-50vw + 50%);
   height: 350px;
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
 
 .flashmob-track {
   display: flex;
   width: max-content;
   animation: scroll-left 40s linear infinite;
-  gap: 20px;
-  padding: 0 10px;
+  gap: 12px;
+  padding: 0;
 }
 
 .flashmob-track:hover {
@@ -202,13 +204,12 @@ section {
   border-radius: var(--radius-lg);
   object-fit: cover;
   box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-  border: 3px solid rgba(255,255,255,0.15);
   flex-shrink: 0;
 }
 
 @keyframes scroll-left {
   0% { transform: translateX(0); }
-  100% { transform: translateX(calc(-50% - 10px)); }
+  100% { transform: translateX(calc(-50% - 6px)); }
 }
 
 /* 2. Problem */
