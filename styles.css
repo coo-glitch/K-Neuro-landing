@@ -177,19 +177,18 @@ section {
 .hero-visual {
   position: relative;
   width: 100vw;
-  max-width: 100%;
   overflow: hidden;
-  margin-top: 40px;
+  margin-top: 60px;
   margin-left: calc(-50vw + 50%);
-  height: 250px;
+  height: 350px;
 }
 
 .flashmob-track {
   display: flex;
   width: max-content;
-  animation: scroll-left 30s linear infinite;
-  gap: 16px;
-  padding: 0 8px;
+  animation: scroll-left 40s linear infinite;
+  gap: 20px;
+  padding: 0 10px;
 }
 
 .flashmob-track:hover {
@@ -197,17 +196,18 @@ section {
 }
 
 .flashmob-track img {
-  height: 250px;
+  height: 350px;
   width: auto;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   object-fit: cover;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-  border: 2px solid rgba(255,255,255,0.1);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+  border: 3px solid rgba(255,255,255,0.15);
+  flex-shrink: 0;
 }
 
 @keyframes scroll-left {
   0% { transform: translateX(0); }
-  100% { transform: translateX(calc(-50% - 8px)); }
+  100% { transform: translateX(calc(-50% - 10px)); }
 }
 
 /* 2. Problem */
