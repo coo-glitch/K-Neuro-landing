@@ -250,8 +250,7 @@
       <p class="section-desc">간단한 정보를 남겨주시면, 담당자가 확인 후 빠르고 친절하게 안내해 드립니다.</p>
       
       <div class="contact-form-wrapper">
-        <!-- Formspree나 별도의 폼 서비스의 action URL로 교체해 사용하시면 됩니다. -->
-        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="contact-form">
+        <form class="contact-form">
           <div class="form-group">
             <label for="name">이름 / 직책 <span class="required">*</span></label>
             <input type="text" id="name" name="name" required placeholder="예: 홍길동 원장">
@@ -329,7 +328,7 @@
       <p class="modal-desc">간단한 정보를 남겨주시면 빠르게 안내해 드립니다.</p>
       
       <div class="contact-form-wrapper">
-        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="contact-form">
+        <form class="contact-form">
           <div class="form-group">
             <label for="modal-name">이름 / 직책 <span class="required">*</span></label>
             <input type="text" id="modal-name" name="name" required placeholder="예: 홍길동 원장">
@@ -386,6 +385,43 @@
         document.body.style.overflow = '';
       }
     }
+
+    // 모든 폼에 대해 노션 API (Vercel Serverless Function) 연동
+    document.querySelectorAll('.contact-form').forEach(form => {
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const btn = this.querySelector('button[type="submit"]');
+        const originalText = btn.textContent;
+        btn.textContent = '접수 중...';
+        btn.disabled = true;
+
+        const formData = new FormData(this);
+        const data = Object.fromEntries(formData.entries());
+
+        try {
+          const response = await fetch('/api/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+          });
+          
+          if (response.ok) {
+            alert('교육 문의가 성공적으로 접수되었습니다.\n담당자가 확인 후 빠르게 연락드리겠습니다!');
+            this.reset();
+            closeModal();
+          } else {
+            const errorObj = await response.json();
+            alert('접수에 실패했습니다: ' + (errorObj.message || '서버 오류'));
+          }
+        } catch (error) {
+          alert('네트워크 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.');
+        } finally {
+          btn.textContent = originalText;
+          btn.disabled = false;
+        }
+      });
+    });
   </script>
 </body>
 </html>
