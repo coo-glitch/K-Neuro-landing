@@ -234,7 +234,62 @@
   </section>
 
   <!-- ==============================================
-       8. 마지막 CTA Section
+       8. 문의 접수 폼 Section
+       ============================================== -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <h2 class="section-title">지금 바로 문의를 남겨주세요</h2>
+      <p class="section-desc">간단한 정보를 남겨주시면, 담당자가 확인 후 빠르고 친절하게 안내해 드립니다.</p>
+      
+      <div class="contact-form-wrapper">
+        <!-- Formspree나 별도의 폼 서비스의 action URL로 교체해 사용하시면 됩니다. -->
+        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="contact-form">
+          <div class="form-group">
+            <label for="name">이름 / 직책 <span class="required">*</span></label>
+            <input type="text" id="name" name="name" required placeholder="예: 홍길동 원장">
+          </div>
+          
+          <div class="form-group">
+            <label for="phone">연락처 <span class="required">*</span></label>
+            <input type="tel" id="phone" name="phone" required placeholder="010-0000-0000">
+          </div>
+          
+          <div class="form-group">
+            <label for="center">소속 센터 (또는 지역)</label>
+            <input type="text" id="center" name="center" placeholder="예: 서울 강남구 OO필라테스">
+          </div>
+          
+          <div class="form-group">
+            <label for="program">관심 프로그램 <span class="required">*</span></label>
+            <select id="program" name="program" required>
+              <option value="" disabled selected>관심있는 과정을 선택해주세요</option>
+              <option value="프리미엄 멤버십">프리미엄 멤버십</option>
+              <option value="정규 뉴로 트레이닝">정규 뉴로 트레이닝</option>
+              <option value="블럭 강의 및 출강">블럭 강의 및 출강</option>
+              <option value="기타 상담">기타 상담</option>
+            </select>
+          </div>
+          
+          <div class="form-group full-width">
+            <label for="message">문의 내용</label>
+            <textarea id="message" name="message" rows="4" placeholder="궁금하신 점이나 현재 센터의 고민을 자유롭게 적어주세요."></textarea>
+          </div>
+          
+          <div class="form-group full-width checkbox-group">
+            <input type="checkbox" id="privacy" name="privacy" required>
+            <label for="privacy">개인정보 수집 및 이용에 동의합니다. (필수)</label>
+          </div>
+          
+          <div class="form-submit full-width">
+            <button type="submit" class="btn btn-primary btn-large full-width">문의 접수하기</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       9. 마지막 CTA Section
        [심리 원칙] 결핍, 책임감과 일관성, 새 출발 효과
        ============================================== -->
   <section class="final-cta">
