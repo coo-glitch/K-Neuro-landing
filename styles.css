@@ -147,10 +147,29 @@ section {
 
 /* 1. Hero */
 .hero {
-  background: linear-gradient(135deg, var(--color-main) 0%, #051A4D 100%);
+  background: 
+    /* 하단 중앙에서 뻗어나가는 날카로운 광선들 (Light Rays) */
+    conic-gradient(from 270deg at 50% 100%, 
+      transparent 0deg, 
+      rgba(150, 200, 255, 0.03) 25deg, 
+      transparent 45deg, 
+      rgba(150, 200, 255, 0.08) 65deg, 
+      transparent 85deg, 
+      rgba(255, 255, 255, 0.25) 90deg, 
+      transparent 95deg, 
+      rgba(150, 200, 255, 0.08) 115deg, 
+      transparent 135deg, 
+      rgba(150, 200, 255, 0.03) 155deg, 
+      transparent 180deg),
+    /* 하단 중앙의 은은한 푸른빛 번짐 (Glow) */
+    radial-gradient(ellipse 90% 70% at 50% 100%, rgba(40, 100, 255, 0.3) 0%, transparent 60%),
+    /* 우주 공간처럼 깊이 있는 다크 베이스 */
+    linear-gradient(180deg, #020611 0%, #0A1630 60%, #16294F 100%);
   color: var(--color-white);
-  padding: 100px 0 120px;
+  padding: 140px 0 100px;
   text-align: center;
+  position: relative;
+  overflow: hidden;
 }
 .hero-title {
   font-size: 2.5rem;
