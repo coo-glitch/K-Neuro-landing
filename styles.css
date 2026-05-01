@@ -182,8 +182,6 @@ section {
   margin-top: 60px;
   margin-left: calc(-50vw + 50%);
   height: 350px;
-  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
 
 .flashmob-track {
