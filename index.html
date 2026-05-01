@@ -7,7 +7,15 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
+  <!-- ==============================================
+       Header (Navigation)
+       ============================================== -->
+  <header class="header">
+    <div class="container header-container">
+      <div class="logo">K-Neuro Institute</div>
+      <button class="btn btn-point btn-small" onclick="openModal()">문의하기</button>
+    </div>
+  </header>
   <!-- ==============================================
        1. Hero Section 
        [심리 원칙] 호기심의 틈, 프레이밍(얻는 것), 주목 효과
@@ -25,7 +33,7 @@
         <p class="hero-subtitle">신경계 기반 트레이닝부터 통증 케어, 운동 재활까지.<br>당신의 전문성을 압도적으로 완성할 프리미엄 교육 네트워크.</p>
         <div class="hero-cta-group">
           <!-- 나중에 상담신청 링크로 교체 예정 -->
-          <a href="#" class="btn btn-primary">교육 상담 신청하기</a>
+          <a href="javascript:void(0)" onclick="openModal()" class="btn btn-primary">교육 상담 신청하기</a>
           <!-- 나중에 커리큘럼 링크로 교체 예정 -->
           <a href="#" class="btn btn-outline">프로그램 알아보기</a>
         </div>
@@ -299,7 +307,7 @@
       
       <div class="cta-actions">
         <!-- 나중에 상담신청 링크로 교체 예정 -->
-        <a href="#" class="btn btn-point btn-large">1:1 교육 상담 신청하기</a>
+        <a href="javascript:void(0)" onclick="openModal()" class="btn btn-point btn-large">1:1 교육 상담 신청하기</a>
         <!-- 나중에 카카오채널 링크로 교체 예정 -->
         <a href="http://pf.kakao.com/_FuITX" class="btn btn-outline-white btn-large" target="_blank">카카오톡으로 빠른 문의</a>
       </div>
@@ -311,5 +319,73 @@
     </div>
   </section>
 
+  <!-- ==============================================
+       Modal (Popup) Form
+       ============================================== -->
+  <div class="modal-overlay" id="inquiryModal" onclick="closeModal(event)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <h3 class="modal-title">교육 문의 남기기</h3>
+      <p class="modal-desc">간단한 정보를 남겨주시면 빠르게 안내해 드립니다.</p>
+      
+      <div class="contact-form-wrapper">
+        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="contact-form">
+          <div class="form-group">
+            <label for="modal-name">이름 / 직책 <span class="required">*</span></label>
+            <input type="text" id="modal-name" name="name" required placeholder="예: 홍길동 원장">
+          </div>
+          
+          <div class="form-group">
+            <label for="modal-phone">연락처 <span class="required">*</span></label>
+            <input type="tel" id="modal-phone" name="phone" required placeholder="010-0000-0000">
+          </div>
+          
+          <div class="form-group">
+            <label for="modal-center">소속 센터 (또는 지역)</label>
+            <input type="text" id="modal-center" name="center" placeholder="예: 서울 강남구 OO필라테스">
+          </div>
+          
+          <div class="form-group">
+            <label for="modal-program">관심 프로그램 <span class="required">*</span></label>
+            <select id="modal-program" name="program" required>
+              <option value="" disabled selected>관심있는 과정을 선택해주세요</option>
+              <option value="프리미엄 멤버십">프리미엄 멤버십</option>
+              <option value="정규 뉴로 트레이닝">정규 뉴로 트레이닝</option>
+              <option value="블럭 강의 및 출강">블럭 강의 및 출강</option>
+              <option value="기타 상담">기타 상담</option>
+            </select>
+          </div>
+          
+          <div class="form-group full-width">
+            <label for="modal-message">문의 내용</label>
+            <textarea id="modal-message" name="message" rows="3" placeholder="궁금하신 점이나 고민을 자유롭게 적어주세요."></textarea>
+          </div>
+          
+          <div class="form-group full-width checkbox-group">
+            <input type="checkbox" id="modal-privacy" name="privacy" required>
+            <label for="modal-privacy">개인정보 수집 및 이용 동의 (필수)</label>
+          </div>
+          
+          <div class="form-submit full-width">
+            <button type="submit" class="btn btn-primary btn-large full-width">문의 접수하기</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openModal() {
+      document.getElementById('inquiryModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeModal(event) {
+      if (!event || event.target.id === 'inquiryModal' || event.type === 'click') {
+        document.getElementById('inquiryModal').classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+  </script>
 </body>
 </html>
